@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lab 04 – Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card" role="region" aria-labelledby="login-title">
+      <h1 id="login-title">Đăng nhập</h1>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            inputmode="email"
+            autocomplete="username"
+            placeholder="vd: user@example.com hoặc username"
+            aria-describedby="usernameHelp usernameError"
+            required
+          />
+          <small id="usernameHelp" class="muted">Tối thiểu 3 ký tự. Có thể là email.</small>
+          <p id="usernameError" class="error" role="alert" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="password-wrapper">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••"
+              aria-describedby="passwordHelp passwordError"
+              required
+              minlength="6"
+            />
+            <button type="button" class="toggle" aria-label="Hiện/ẩn mật khẩu" title="Hiện/ẩn mật khẩu">👁️</button>
+          </div>
+          <small id="passwordHelp" class="muted">Tối thiểu 6 ký tự. Nên có chữ & số.</small>
+          <p id="passwordError" class="error" role="alert" aria-live="polite"></p>
+        </div>
+
+        <div class="row between center">
+          <label class="checkbox">
+            <input id="remember" type="checkbox" />
+            <span>Remember me</span>
+          </label>
+
+          <a class="link" href="#" id="forgot">Quên mật khẩu?</a>
+        </div>
+
+        <div class="row gap">
+          <button id="loginBtn" type="submit" class="btn primary">Login</button>
+          <button id="cancelBtn" type="button" class="btn ghost">Cancel</button>
+        </div>
+
+        <div id="formMessage" class="form-message" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <small>© 2025 – Lab 04 Front-end Demo</small>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

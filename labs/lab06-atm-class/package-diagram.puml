@@ -1,0 +1,36 @@
+@startuml
+' Lab 06 – Package Diagram: Book Management System
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam dpi 150
+
+package UI {
+  class LoginPage
+  class BookAdminPage
+  class SearchPage
+  class BookDetailPage
+}
+
+package Controller {
+  class AuthController
+  class BookController
+  class SearchController
+}
+
+package Service {
+  class UserService
+  class BookService
+  class SearchService
+}
+
+package Persistence {
+  class UserDAO
+  class BookDAO
+}
+
+' Dependencies between packages
+UI --> Controller
+Controller --> Service
+Service --> Persistence
+
+@enduml

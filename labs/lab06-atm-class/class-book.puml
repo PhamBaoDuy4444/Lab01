@@ -1,0 +1,60 @@
+@startuml
+' Lab 06 – Class Diagram: Book Management System
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+
+class User {
+  - userId : int
+  - email : String
+  - passwordHash : String
+  - role : String  ' USER / ADMIN
+  + register(email:String, password:String)
+  + login(email:String, password:String) : boolean
+}
+
+class Session {
+  - sessionId : String
+  - userId : int
+  - token : String  ' JWT
+  + createSession(user:User)
+  + validate(token:String) : boolean
+}
+
+class Book {
+  - bookId : int
+  - title : String
+  - author : String
+  - genre : String
+  - isbn : String
+  - description : String
+  + validateIsbn(isbn:String) : boolean
+}
+
+class SearchService {
+  + search(keyword:String) : List<Book>
+  + filter(criteria:String) : List<Book>
+}
+
+' Optional DAO layer for clarity (can be omitted if desired)
+class UserDAO {
+  + findByEmail(email:String) : User
+  + create(user:User)
+}
+
+class BookDAO {
+  + create(book:Book)
+  + update(book:Book)
+  + delete(bookId:int)
+  + findById(bookId:int) : Book
+  + search(keyword:String) : List<Book>
+}
+
+' Relationships from use cases
+User --> Session : creates/uses
+User --> Book : manages (CRUD if role=ADMIN)
+SearchService --> Book : returns
+UserDAO --> User
+BookDAO --> Book
+
+@enduml
